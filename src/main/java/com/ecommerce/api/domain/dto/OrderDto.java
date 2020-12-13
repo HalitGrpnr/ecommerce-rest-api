@@ -1,7 +1,5 @@
 package com.ecommerce.api.domain.dto;
 
-import com.ecommerce.api.domain.entity.Product;
-import com.ecommerce.api.domain.entity.User;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 
