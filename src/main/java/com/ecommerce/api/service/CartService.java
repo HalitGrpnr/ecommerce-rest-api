@@ -6,8 +6,8 @@ import java.util.List;
 
 public interface CartService {
     CartDto get(Long id);
-    CartDto add(CartDto cart);
-    CartDto update(CartDto cart);
+    CartDto add(CartDto cartDto);
+    CartDto update(CartDto cartDto);
     void delete(Long id);
     List<CartDto> getAll();
 }
