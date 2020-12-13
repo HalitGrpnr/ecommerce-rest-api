@@ -2,6 +2,7 @@ package com.ecommerce.api.domain.dto;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -24,10 +25,10 @@ public class ProductDto implements Serializable {
     @JsonBackReference("store-product")
     private StoreDto storeDto;
 
-    @JsonBackReference("comment-product")
+    @JsonManagedReference("product-comment")
     private List<CommentDto> comments;
 
-    @JsonBackReference("rating-product")
+    @JsonManagedReference("product-rating")
     private List<RatingDto> ratings;
 
     @JsonIgnore

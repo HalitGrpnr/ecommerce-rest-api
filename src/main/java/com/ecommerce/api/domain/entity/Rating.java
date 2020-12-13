@@ -30,17 +30,17 @@ public class Rating {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = USER_ID)
-    @JsonBackReference
+    @JsonBackReference("user-rating")
     private User user;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = STORE_ID)
-    @JsonBackReference
+    @JsonBackReference("store-rating")
     private Store store;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = PRODUCT_ID)
-    @JsonBackReference
+    @JsonBackReference("product-rating")
     private Product product;
 
 }

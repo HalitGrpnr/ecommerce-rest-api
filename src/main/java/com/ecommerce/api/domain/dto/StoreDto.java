@@ -17,10 +17,10 @@ public class StoreDto implements Serializable {
     private Date createdDate;
     private double averageRate;
 
-    @JsonBackReference("comment-store")
+    @JsonManagedReference("store-comment")
     private List<CommentDto> comments;
 
-    @JsonBackReference("rating-store")
+    @JsonManagedReference("store-rating")
     private List<RatingDto> ratings;
 
     @JsonManagedReference("store-product")

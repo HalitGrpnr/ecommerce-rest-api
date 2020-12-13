@@ -1,5 +1,6 @@
 package com.ecommerce.api.domain.dto;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 
@@ -14,12 +15,12 @@ public class RatingDto implements Serializable {
     private int rate;
     private Date createdDate;
 
-    @JsonManagedReference("rating-user")
+    @JsonBackReference("user-rating")
     private UserDto userDto;
 
-    @JsonManagedReference("rating-store")
+    @JsonBackReference("store-rating")
     private StoreDto storeDto;
 
-    @JsonManagedReference("rating-product")
+    @JsonBackReference("product-rating")
     private ProductDto productDto;
 }

@@ -30,12 +30,12 @@ public class UserDto implements Serializable {
     @JsonManagedReference("user-store")
     private StoreDto storeDto;
 
-    @JsonBackReference("comment-user")
+    @JsonManagedReference("user-comment")
     private List<CommentDto> comments;
 
-    @JsonBackReference("rating-user")
+    @JsonManagedReference("user-rating")
     private List<RatingDto> ratings;
 
-    @JsonBackReference("order-user")
+    @JsonManagedReference("user-order")
     private List<OrderDto> orders;
 }

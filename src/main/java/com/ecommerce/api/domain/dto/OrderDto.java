@@ -1,6 +1,6 @@
 package com.ecommerce.api.domain.dto;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -15,7 +15,7 @@ public class OrderDto implements Serializable {
     private double totalPrice;
     private Date createdDate;
 
-    @JsonManagedReference("order-user")
+    @JsonBackReference("user-order")
     private UserDto userDto;
 
     private List<ProductDto> products;

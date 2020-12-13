@@ -1,6 +1,6 @@
 package com.ecommerce.api.domain.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
@@ -9,6 +9,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.util.Date;
 import java.util.List;
+
 import static com.ecommerce.api.domain.schema.CategorySchema.*;
 
 @Entity
@@ -34,6 +35,6 @@ public class Category {
     private Date createdDate;
 
     @ManyToMany(mappedBy = CATEGORIES)
-    @JsonBackReference
+    @JsonIgnore
     private List<Product> products;
 }

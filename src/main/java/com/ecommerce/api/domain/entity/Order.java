@@ -34,7 +34,7 @@ public class Order {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = USER_ID, nullable = false)
-    @JsonBackReference
+    @JsonBackReference("user-order")
     private User user;
 
     @ManyToMany
@@ -42,7 +42,6 @@ public class Order {
             name = ORDER_PRODUCTS,
             joinColumns = @JoinColumn(name = ORDER_ID),
             inverseJoinColumns = @JoinColumn(name = PRODUCT_ID))
-    @JsonManagedReference
     private List<Product> products;
 
 }

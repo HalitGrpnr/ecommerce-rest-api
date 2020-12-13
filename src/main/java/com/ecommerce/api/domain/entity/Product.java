@@ -1,6 +1,7 @@
 package com.ecommerce.api.domain.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 import org.springframework.data.annotation.CreatedDate;
@@ -58,18 +59,18 @@ public class Product {
     @OneToMany(cascade = CascadeType.ALL,
             fetch = FetchType.LAZY,
             mappedBy = PRODUCT)
-    @JsonManagedReference
+    @JsonManagedReference("product-comment")
     private List<Comment> comments;
 
     @OneToMany(cascade = CascadeType.ALL,
             fetch = FetchType.LAZY,
             mappedBy = PRODUCT)
-    @JsonManagedReference
+    @JsonManagedReference("product-rating")
     private List<Rating> ratings;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = STORE_ID, referencedColumnName = ID)
-    @JsonBackReference
+    @JsonBackReference("store-product")
     private Store store;
 
     @ManyToMany
@@ -77,14 +78,13 @@ public class Product {
             name = PRODUCT_CATEGORIES,
             joinColumns = @JoinColumn(name = PRODUCT_ID),
             inverseJoinColumns = @JoinColumn(name = CATEGORY_ID))
-    @JsonManagedReference
     private List<Category> categories;
 
     @ManyToMany(mappedBy = PRODUCTS)
-    @JsonBackReference
+    @JsonIgnore
     private List<Cart> carts;
 
     @ManyToMany(mappedBy = PRODUCTS)
-    @JsonBackReference
+    @JsonIgnore
     private List<Order> orders;
 }

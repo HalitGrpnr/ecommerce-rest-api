@@ -1,5 +1,6 @@
 package com.ecommerce.api.domain.dto;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 
@@ -14,12 +15,12 @@ public class CommentDto implements Serializable {
     private String content;
     private Date createdDate;
 
-    @JsonManagedReference("comment-user")
+    @JsonBackReference("user-comment")
     private UserDto userDto;
 
-    @JsonManagedReference("comment-store")
+    @JsonBackReference("store-comment")
     private StoreDto storeDto;
 
-    @JsonManagedReference("comment-product")
+    @JsonBackReference("product-comment")
     private ProductDto productDto;
 }

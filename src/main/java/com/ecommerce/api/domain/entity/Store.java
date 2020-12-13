@@ -40,23 +40,23 @@ public class Store {
     @OneToMany(cascade = CascadeType.ALL,
             fetch = FetchType.LAZY,
             mappedBy = STORE)
-    @JsonManagedReference
+    @JsonManagedReference("store-comment")
     private List<Comment> comments;
 
     @OneToMany(cascade = CascadeType.ALL,
             fetch = FetchType.LAZY,
             mappedBy = STORE)
-    @JsonManagedReference
+    @JsonManagedReference("store-rating")
     private List<Rating> ratings;
 
 
     @OneToMany(cascade = CascadeType.ALL,
             fetch = FetchType.LAZY,
             mappedBy = STORE)
-    @JsonManagedReference
+    @JsonManagedReference("store-product")
     private List<Product> products;
 
     @OneToOne(mappedBy = STORE, fetch = FetchType.EAGER)
-    @JsonBackReference
+    @JsonBackReference("user-store")
     private User user;
 }

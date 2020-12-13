@@ -32,17 +32,17 @@ public class Comment {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = USER_ID, nullable = false)
-    @JsonBackReference
+    @JsonBackReference("user-comment")
     private User user;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = STORE_ID)
-    @JsonBackReference
+    @JsonBackReference("store-comment")
     private Store store;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = PRODUCT_ID)
-    @JsonBackReference
+    @JsonBackReference("product-comment")
     private Product product;
 
 

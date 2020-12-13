@@ -59,30 +59,30 @@ public class User {
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = CART_ID, referencedColumnName = ID)
-    @JsonManagedReference
+    @JsonManagedReference("user-cart")
     private Cart cart;
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = STORE_ID, referencedColumnName = ID)
-    @JsonManagedReference
+    @JsonManagedReference("user-store")
     private Store store;
 
     @OneToMany(cascade = CascadeType.ALL,
             fetch = FetchType.LAZY,
             mappedBy = USER)
-    @JsonManagedReference
+    @JsonManagedReference("user-comment")
     private List<Comment> comments;
 
     @OneToMany(cascade = CascadeType.ALL,
             fetch = FetchType.LAZY,
             mappedBy = USER)
-    @JsonManagedReference
+    @JsonManagedReference("user-rating")
     private List<Rating> ratings;
 
     @OneToMany(cascade = CascadeType.ALL,
             fetch = FetchType.LAZY,
             mappedBy = USER)
-    @JsonManagedReference
+    @JsonManagedReference("user-order")
     private List<Order> orders;
 
 }

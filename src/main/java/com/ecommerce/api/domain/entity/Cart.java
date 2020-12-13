@@ -1,7 +1,7 @@
 package com.ecommerce.api.domain.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -20,7 +20,7 @@ public class Cart {
     private Long id;
 
     @OneToOne(mappedBy = CART)
-    @JsonBackReference
+    @JsonBackReference("user-cart")
     private User user;
 
     @ManyToMany
@@ -28,7 +28,6 @@ public class Cart {
             name = CART_PRODUCTS,
             joinColumns = @JoinColumn(name = CART_ID),
             inverseJoinColumns = @JoinColumn(name = PRODUCT_ID))
-    @JsonManagedReference
     private List<Product> products;
 
 
