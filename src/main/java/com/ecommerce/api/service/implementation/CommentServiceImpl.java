@@ -14,10 +14,11 @@ import java.util.stream.Collectors;
 public class CommentServiceImpl implements CommentService {
     
     private CommentRepository commentRepository;
-    private CommentConverter commentConverter = new CommentConverter();
+    private CommentConverter commentConverter;
 
-    public CommentServiceImpl(CommentRepository commentRepository) {
+    public CommentServiceImpl(CommentRepository commentRepository, CommentConverter commentConverter) {
         this.commentRepository = commentRepository;
+        this.commentConverter = commentConverter;
     }
 
     @Override

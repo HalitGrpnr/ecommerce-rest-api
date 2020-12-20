@@ -14,10 +14,11 @@ import java.util.stream.Collectors;
 public class UserServiceImpl implements UserService {
     
     private UserRepository userRepository;
-    private UserConverter userConverter = new UserConverter();
+    private UserConverter userConverter;
 
-    public UserServiceImpl(UserRepository userRepository) {
+    public UserServiceImpl(UserRepository userRepository, UserConverter userConverter) {
         this.userRepository = userRepository;
+        this.userConverter = userConverter;
     }
 
     @Override

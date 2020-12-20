@@ -2,7 +2,9 @@ package com.ecommerce.api.domain.converter;
 
 import com.ecommerce.api.domain.dto.UserDto;
 import com.ecommerce.api.domain.entity.User;
+import org.springframework.stereotype.Service;
 
+@Service
 public class UserConverter implements BaseConverter<UserDto, User>{
 
     @Override

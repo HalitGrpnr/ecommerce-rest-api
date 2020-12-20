@@ -14,10 +14,11 @@ import java.util.stream.Collectors;
 public class StoreServiceImpl implements StoreService {
     
     private StoreRepository storeRepository;
-    private StoreConverter storeConverter = new StoreConverter();
+    private StoreConverter storeConverter;
 
-    public StoreServiceImpl(StoreRepository storeRepository) {
+    public StoreServiceImpl(StoreRepository storeRepository, StoreConverter storeConverter) {
         this.storeRepository = storeRepository;
+        this.storeConverter = storeConverter;
     }
 
     @Override

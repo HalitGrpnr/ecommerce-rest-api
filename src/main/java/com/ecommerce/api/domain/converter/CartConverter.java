@@ -2,7 +2,9 @@ package com.ecommerce.api.domain.converter;
 
 import com.ecommerce.api.domain.dto.CartDto;
 import com.ecommerce.api.domain.entity.Cart;
+import org.springframework.stereotype.Service;
 
+@Service
 public class CartConverter implements BaseConverter<CartDto, Cart>{
 
     @Override

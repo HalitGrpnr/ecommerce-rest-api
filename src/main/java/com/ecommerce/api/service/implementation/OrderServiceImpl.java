@@ -14,10 +14,11 @@ import java.util.stream.Collectors;
 public class OrderServiceImpl implements OrderService {
     
     private OrderRepository orderRepository;
-    private OrderConverter orderConverter = new OrderConverter();
+    private OrderConverter orderConverter;
 
-    public OrderServiceImpl(OrderRepository orderRepository) {
+    public OrderServiceImpl(OrderRepository orderRepository, OrderConverter orderConverter) {
         this.orderRepository = orderRepository;
+        this.orderConverter = orderConverter;
     }
 
     @Override

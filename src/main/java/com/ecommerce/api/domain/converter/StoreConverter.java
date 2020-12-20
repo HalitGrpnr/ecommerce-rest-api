@@ -2,7 +2,9 @@ package com.ecommerce.api.domain.converter;
 
 import com.ecommerce.api.domain.dto.StoreDto;
 import com.ecommerce.api.domain.entity.Store;
+import org.springframework.stereotype.Service;
 
+@Service
 public class StoreConverter implements BaseConverter<StoreDto, Store>{
     @Override
     public StoreDto convertToDto(Store store) {

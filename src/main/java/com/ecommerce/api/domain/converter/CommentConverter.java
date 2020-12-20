@@ -2,7 +2,9 @@ package com.ecommerce.api.domain.converter;
 
 import com.ecommerce.api.domain.dto.CommentDto;
 import com.ecommerce.api.domain.entity.Comment;
+import org.springframework.stereotype.Service;
 
+@Service
 public class CommentConverter implements BaseConverter<CommentDto, Comment> {
     @Override
     public CommentDto convertToDto(Comment comment) {

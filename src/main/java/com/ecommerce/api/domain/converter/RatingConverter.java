@@ -2,7 +2,9 @@ package com.ecommerce.api.domain.converter;
 
 import com.ecommerce.api.domain.dto.RatingDto;
 import com.ecommerce.api.domain.entity.Rating;
+import org.springframework.stereotype.Service;
 
+@Service
 public class RatingConverter implements BaseConverter<RatingDto, Rating> {
     @Override
     public RatingDto convertToDto(Rating rating) {

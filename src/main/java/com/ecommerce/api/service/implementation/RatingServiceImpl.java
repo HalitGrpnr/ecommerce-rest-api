@@ -14,10 +14,11 @@ import java.util.stream.Collectors;
 public class RatingServiceImpl implements RatingService {
     
     private RatingRepository ratingRepository;
-    private RatingConverter ratingConverter = new RatingConverter();
+    private RatingConverter ratingConverter;
 
-    public RatingServiceImpl(RatingRepository ratingRepository) {
+    public RatingServiceImpl(RatingRepository ratingRepository, RatingConverter ratingConverter) {
         this.ratingRepository = ratingRepository;
+        this.ratingConverter = ratingConverter;
     }
 
     @Override

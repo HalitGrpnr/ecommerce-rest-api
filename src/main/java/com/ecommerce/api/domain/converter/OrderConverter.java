@@ -2,7 +2,9 @@ package com.ecommerce.api.domain.converter;
 
 import com.ecommerce.api.domain.dto.OrderDto;
 import com.ecommerce.api.domain.entity.Order;
+import org.springframework.stereotype.Service;
 
+@Service
 public class OrderConverter implements BaseConverter<OrderDto, Order> {
     @Override
     public OrderDto convertToDto(Order order) {

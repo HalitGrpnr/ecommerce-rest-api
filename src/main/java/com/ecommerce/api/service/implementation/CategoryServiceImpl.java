@@ -14,10 +14,11 @@ import java.util.stream.Collectors;
 public class CategoryServiceImpl implements CategoryService {
     
     private CategoryRepository categoryRepository;
-    private CategoryConverter categoryConverter = new CategoryConverter();
+    private CategoryConverter categoryConverter;
 
-    public CategoryServiceImpl(CategoryRepository categoryRepository) {
+    public CategoryServiceImpl(CategoryRepository categoryRepository, CategoryConverter categoryConverter) {
         this.categoryRepository = categoryRepository;
+        this.categoryConverter = categoryConverter;
     }
 
     @Override

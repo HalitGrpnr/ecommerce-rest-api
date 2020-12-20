@@ -14,10 +14,11 @@ import java.util.stream.Collectors;
 public class ProductServiceImpl implements ProductService {
     
     private ProductRepository productRepository;
-    private ProductConverter productConverter = new ProductConverter();
+    private ProductConverter productConverter;
 
-    public ProductServiceImpl(ProductRepository productRepository) {
+    public ProductServiceImpl(ProductRepository productRepository, ProductConverter productConverter) {
         this.productRepository = productRepository;
+        this.productConverter = productConverter;
     }
 
     @Override

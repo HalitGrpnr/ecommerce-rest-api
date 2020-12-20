@@ -15,10 +15,11 @@ public class CartServiceImpl implements CartService {
 
     private CartRepository cartRepository;
 
-    private CartConverter cartConverter = new CartConverter();
+    private CartConverter cartConverter;
 
-    public CartServiceImpl(CartRepository cartRepository) {
+    public CartServiceImpl(CartRepository cartRepository, CartConverter cartConverter) {
         this.cartRepository = cartRepository;
+        this.cartConverter = cartConverter;
     }
 
     @Override
