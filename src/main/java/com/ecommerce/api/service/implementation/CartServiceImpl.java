@@ -6,16 +6,17 @@ import com.ecommerce.api.domain.entity.Cart;
 import com.ecommerce.api.repository.CartRepository;
 import com.ecommerce.api.service.CartService;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
 public class CartServiceImpl implements CartService {
 
-    private CartRepository cartRepository;
-
-    private CartConverter cartConverter;
+    private final CartRepository cartRepository;
+    private final CartConverter cartConverter;
 
     public CartServiceImpl(CartRepository cartRepository, CartConverter cartConverter) {
         this.cartRepository = cartRepository;
@@ -24,22 +25,22 @@ public class CartServiceImpl implements CartService {
 
     @Override
     public CartDto get(Long id) {
-        Cart cart = cartRepository.findById(id).orElse(new Cart());
-        CartDto cartDto = cartConverter.convertToDto(cart);
-        return cartDto;
+        Cart cart = cartRepository.findById(id).orElseThrow(EntityNotFoundException::new);
+        return cartConverter.convert(cart);
     }
 
     @Override
     public CartDto add(CartDto cartDto) {
-        Cart cart = cartConverter.convertToEntity(cartDto);
+        Cart cart = cartConverter.convert(cartDto);
         cart = cartRepository.save(cart);
 
-        return cartConverter.convertToDto(cart);
+        return cartConverter.convert(cart);
     }
 
     @Override
     public CartDto update(CartDto cartDto) {
-        return null;
+        Cart cart = cartRepository.save(cartConverter.convert(cartDto));
+        return cartConverter.convert(cart);
     }
 
     @Override
@@ -50,7 +51,11 @@ public class CartServiceImpl implements CartService {
     @Override
     public List<CartDto> getAll() {
         List<Cart> carts = cartRepository.findAll();
-        List<CartDto> cartDtos = carts.stream().map(c -> cartConverter.convertToDto(c)).collect(Collectors.toList());
-        return cartDtos;
+
+        if (CollectionUtils.isEmpty(carts)) {
+            throw new EntityNotFoundException();
+        }
+
+        return carts.stream().map(cartConverter::convert).collect(Collectors.toList());
     }
 }

@@ -24,16 +24,16 @@ public class RatingServiceImpl implements RatingService {
     @Override
     public RatingDto get(Long id) {
         Rating rating = ratingRepository.findById(id).orElse(new Rating());
-        RatingDto ratingDto = ratingConverter.convertToDto(rating);
+        RatingDto ratingDto = ratingConverter.convert(rating);
         return ratingDto;
     }
 
     @Override
     public RatingDto add(RatingDto ratingDto) {
-        Rating rating = ratingConverter.convertToEntity(ratingDto);
+        Rating rating = ratingConverter.convert(ratingDto);
         rating = ratingRepository.save(rating);
 
-        return ratingConverter.convertToDto(rating);
+        return ratingConverter.convert(rating);
     }
 
     @Override
@@ -49,7 +49,7 @@ public class RatingServiceImpl implements RatingService {
     @Override
     public List<RatingDto> getAll() {
         List<Rating> ratings = ratingRepository.findAll();
-        List<RatingDto> ratingDtos = ratings.stream().map(c -> ratingConverter.convertToDto(c)).collect(Collectors.toList());
+        List<RatingDto> ratingDtos = ratings.stream().map(c -> ratingConverter.convert(c)).collect(Collectors.toList());
         return ratingDtos;
     }
 }

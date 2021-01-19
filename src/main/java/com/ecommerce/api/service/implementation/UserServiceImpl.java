@@ -24,16 +24,16 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserDto get(Long id) {
         User user = userRepository.findById(id).orElse(new User());
-        UserDto userDto = userConverter.convertToDto(user);
+        UserDto userDto = userConverter.convert(user);
         return userDto;
     }
 
     @Override
     public UserDto add(UserDto userDto) {
-        User user = userConverter.convertToEntity(userDto);
+        User user = userConverter.convert(userDto);
         user = userRepository.save(user);
 
-        return userConverter.convertToDto(user);
+        return userConverter.convert(user);
     }
 
     @Override
@@ -49,7 +49,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<UserDto> getAll() {
         List<User> users = userRepository.findAll();
-        List<UserDto> userDtos = users.stream().map(c -> userConverter.convertToDto(c)).collect(Collectors.toList());
+        List<UserDto> userDtos = users.stream().map(c -> userConverter.convert(c)).collect(Collectors.toList());
         return userDtos;
     }
 }

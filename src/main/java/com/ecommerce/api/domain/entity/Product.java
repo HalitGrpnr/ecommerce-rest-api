@@ -10,6 +10,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.List;
 
@@ -34,7 +35,7 @@ public class Product {
     @Column(name = DESCRIPTION)
     private String description;
 
-    @NotEmpty
+    @NotNull
     @Column(name = PRICE)
     private double price;
 
@@ -46,11 +47,10 @@ public class Product {
     @Column(name = LAST_MODIFIED_DATE)
     private Date lastModifiedDate;
 
-    @NotEmpty
+    @NotNull
     @Column(name = LEAD_TIME)
     private int leadTime;
 
-    @NotEmpty
     @Column(name = AVERAGE_RATE)
     private double averageRate;
 
@@ -68,7 +68,7 @@ public class Product {
     @JsonManagedReference("product-rating")
     private List<Rating> ratings;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = STORE_ID, referencedColumnName = ID)
     @JsonBackReference("store-product")
     private Store store;

@@ -24,16 +24,16 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public OrderDto get(Long id) {
         Order order = orderRepository.findById(id).orElse(new Order());
-        OrderDto orderDto = orderConverter.convertToDto(order);
+        OrderDto orderDto = orderConverter.convert(order);
         return orderDto;
     }
 
     @Override
     public OrderDto add(OrderDto orderDto) {
-        Order order = orderConverter.convertToEntity(orderDto);
+        Order order = orderConverter.convert(orderDto);
         order = orderRepository.save(order);
 
-        return orderConverter.convertToDto(order);
+        return orderConverter.convert(order);
     }
 
     @Override
@@ -49,7 +49,7 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public List<OrderDto> getAll() {
         List<Order> orders = orderRepository.findAll();
-        List<OrderDto> orderDtos = orders.stream().map(c -> orderConverter.convertToDto(c)).collect(Collectors.toList());
+        List<OrderDto> orderDtos = orders.stream().map(c -> orderConverter.convert(c)).collect(Collectors.toList());
         return orderDtos;
     }
 }

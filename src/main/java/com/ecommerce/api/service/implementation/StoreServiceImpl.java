@@ -24,16 +24,16 @@ public class StoreServiceImpl implements StoreService {
     @Override
     public StoreDto get(Long id) {
         Store store = storeRepository.findById(id).orElse(new Store());
-        StoreDto storeDto = storeConverter.convertToDto(store);
+        StoreDto storeDto = storeConverter.convert(store);
         return storeDto;
     }
 
     @Override
     public StoreDto add(StoreDto storeDto) {
-        Store store = storeConverter.convertToEntity(storeDto);
+        Store store = storeConverter.convert(storeDto);
         store = storeRepository.save(store);
 
-        return storeConverter.convertToDto(store);
+        return storeConverter.convert(store);
     }
 
     @Override
@@ -49,7 +49,7 @@ public class StoreServiceImpl implements StoreService {
     @Override
     public List<StoreDto> getAll() {
         List<Store> stores = storeRepository.findAll();
-        List<StoreDto> storeDtos = stores.stream().map(c -> storeConverter.convertToDto(c)).collect(Collectors.toList());
+        List<StoreDto> storeDtos = stores.stream().map(c -> storeConverter.convert(c)).collect(Collectors.toList());
         return storeDtos;
     }
 }

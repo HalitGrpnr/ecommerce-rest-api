@@ -24,16 +24,16 @@ public class CommentServiceImpl implements CommentService {
     @Override
     public CommentDto get(Long id) {
         Comment comment = commentRepository.findById(id).orElse(new Comment());
-        CommentDto commentDto = commentConverter.convertToDto(comment);
+        CommentDto commentDto = commentConverter.convert(comment);
         return commentDto;
     }
 
     @Override
     public CommentDto add(CommentDto commentDto) {
-        Comment comment = commentConverter.convertToEntity(commentDto);
+        Comment comment = commentConverter.convert(commentDto);
         comment = commentRepository.save(comment);
 
-        return commentConverter.convertToDto(comment);
+        return commentConverter.convert(comment);
     }
 
     @Override
@@ -49,7 +49,7 @@ public class CommentServiceImpl implements CommentService {
     @Override
     public List<CommentDto> getAll() {
         List<Comment> comments = commentRepository.findAll();
-        List<CommentDto> commentDtos = comments.stream().map(c -> commentConverter.convertToDto(c)).collect(Collectors.toList());
+        List<CommentDto> commentDtos = comments.stream().map(c -> commentConverter.convert(c)).collect(Collectors.toList());
         return commentDtos;
     }
 }
