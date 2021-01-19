@@ -53,10 +53,13 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public ProductDto update(ProductUpdateRequest request) {
-        List<Category> categories = categoryService.findByIds(request.getCategories());
         Product product = findById(request.getId());
         productConverter.convert(request, product);
-        product.setCategories(categories);
+        if (request.getCategories() != null) {
+            List<Category> categories = categoryService.findByIds(request.getCategories());
+            product.setCategories(categories);
+
+        }
         return productConverter.convert(productRepository.save(product));
     }
 

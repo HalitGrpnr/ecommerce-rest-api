@@ -5,6 +5,7 @@ import com.ecommerce.api.domain.entity.Product;
 import com.ecommerce.api.domain.request.ProductAddRequest;
 import com.ecommerce.api.domain.request.ProductUpdateRequest;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 @Service
 public class ProductConverter {
@@ -55,9 +56,22 @@ public class ProductConverter {
 
     public void convert(ProductUpdateRequest request, Product product) {
         product.setId(request.getId());
-        product.setDescription(request.getDescription());
-        product.setName(request.getName());
-        product.setPrice(request.getPrice());
-        product.setLeadTime(request.getLeadTime());
+
+        if (StringUtils.hasLength(request.getDescription())) {
+            product.setDescription(request.getDescription());
+
+        }
+        if (StringUtils.hasLength(request.getName())) {
+            product.setName(request.getName());
+
+        }
+        if (request.getPrice() != null && request.getPrice() > 0.0) {
+            product.setPrice(request.getPrice());
+
+        }
+        if (request.getLeadTime() != null && request.getLeadTime() > 0) {
+            product.setLeadTime(request.getLeadTime());
+
+        }
     }
 }
