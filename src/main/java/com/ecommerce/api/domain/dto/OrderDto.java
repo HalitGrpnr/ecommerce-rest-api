@@ -8,7 +8,7 @@ import java.util.Date;
 import java.util.List;
 
 @Data
-public class OrderDto implements Serializable {
+public class OrderDto extends BaseDto {
     private static final long serialVersionUID = -9065486762088964837L;
 
     private Long id;

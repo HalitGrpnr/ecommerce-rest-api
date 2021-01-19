@@ -8,7 +8,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 @Data
-public class RatingDto implements Serializable {
+public class RatingDto extends BaseDto {
     private static final long serialVersionUID = 5530357033798932308L;
 
     private Long id;

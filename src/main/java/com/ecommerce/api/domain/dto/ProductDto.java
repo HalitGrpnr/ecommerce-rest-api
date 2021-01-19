@@ -10,7 +10,7 @@ import java.util.Date;
 import java.util.List;
 
 @Data
-public class ProductDto implements Serializable {
+public class ProductDto extends BaseDto {
 
     private static final long serialVersionUID = -6911283630438089730L;
     private Long id;

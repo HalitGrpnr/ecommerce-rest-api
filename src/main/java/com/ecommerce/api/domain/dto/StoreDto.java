@@ -9,7 +9,7 @@ import java.util.Date;
 import java.util.List;
 
 @Data
-public class StoreDto implements Serializable {
+public class StoreDto extends BaseDto {
 
     private static final long serialVersionUID = 324836443313379550L;
     private Long id;

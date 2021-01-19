@@ -7,7 +7,7 @@ import java.io.Serializable;
 import java.util.List;
 
 @Data
-public class CartDto implements Serializable {
+public class CartDto extends BaseDto {
 
     private static final long serialVersionUID = -4852773815810689694L;
     private Long id;
