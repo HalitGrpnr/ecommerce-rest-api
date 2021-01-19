@@ -43,9 +43,13 @@ public class ProductController {
         return ResponseEntity.ok(productService.add(request));
     }
 
-    @PutMapping("/{id}")
+    @PutMapping
     public ResponseEntity<ProductDto> update(@RequestBody ProductUpdateRequest  request){
-        return ResponseEntity.ok(productService.update(request));
+        try {
+            return ResponseEntity.ok(productService.update(request));
+        } catch (EntityNotFoundException e) {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @DeleteMapping("/{id}")
