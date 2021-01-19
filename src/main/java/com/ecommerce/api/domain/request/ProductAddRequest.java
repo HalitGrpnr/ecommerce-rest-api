@@ -17,10 +17,10 @@ public class ProductAddRequest extends BaseRequest{
     private String description;
 
     @NotNull
-    private double price;
+    private Double price;
 
     @NotNull
-    private int leadTime;
+    private Integer leadTime;
 
     @NotEmpty
     private List<Long> categories;

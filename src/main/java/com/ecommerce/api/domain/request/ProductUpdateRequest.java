@@ -14,7 +14,7 @@ public class ProductUpdateRequest extends BaseRequest{
 
     private String name;
     private String description;
-    private double price;
-    private int leadTime;
+    private Double price;
+    private Integer leadTime;
     private List<Long> categories;
 }
