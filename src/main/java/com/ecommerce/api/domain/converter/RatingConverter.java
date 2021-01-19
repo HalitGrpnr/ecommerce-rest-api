@@ -5,9 +5,8 @@ import com.ecommerce.api.domain.entity.Rating;
 import org.springframework.stereotype.Service;
 
 @Service
-public class RatingConverter implements BaseConverter<RatingDto, Rating> {
-    @Override
-    public RatingDto convertToDto(Rating rating) {
+public class RatingConverter {
+    public RatingDto convert(Rating rating) {
         RatingDto ratingDto = new RatingDto();
 
         ratingDto.setId(rating.getId());
@@ -17,10 +16,10 @@ public class RatingConverter implements BaseConverter<RatingDto, Rating> {
         return ratingDto;
     }
 
-    @Override
-    public Rating convertToEntity(RatingDto ratingDto) {
+    public Rating convert(RatingDto ratingDto) {
         Rating rating = new Rating();
 
+        rating.setId(ratingDto.getId());
         rating.setCreatedDate(ratingDto.getCreatedDate());
         rating.setRate(ratingDto.getRate());
 

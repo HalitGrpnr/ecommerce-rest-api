@@ -5,9 +5,8 @@ import com.ecommerce.api.domain.entity.Comment;
 import org.springframework.stereotype.Service;
 
 @Service
-public class CommentConverter implements BaseConverter<CommentDto, Comment> {
-    @Override
-    public CommentDto convertToDto(Comment comment) {
+public class CommentConverter {
+    public CommentDto convert(Comment comment) {
         CommentDto commentDto = new CommentDto();
 
         commentDto.setContent(comment.getContent());
@@ -17,10 +16,10 @@ public class CommentConverter implements BaseConverter<CommentDto, Comment> {
         return commentDto;
     }
 
-    @Override
-    public Comment convertToEntity(CommentDto commentDto) {
+    public Comment convert(CommentDto commentDto) {
         Comment comment = new Comment();
 
+        comment.setId(commentDto.getId());
         comment.setContent(commentDto.getContent());
         comment.setCreatedDate(commentDto.getCreatedDate());
 

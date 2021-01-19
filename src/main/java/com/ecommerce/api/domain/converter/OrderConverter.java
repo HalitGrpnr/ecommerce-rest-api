@@ -5,9 +5,8 @@ import com.ecommerce.api.domain.entity.Order;
 import org.springframework.stereotype.Service;
 
 @Service
-public class OrderConverter implements BaseConverter<OrderDto, Order> {
-    @Override
-    public OrderDto convertToDto(Order order) {
+public class OrderConverter {
+    public OrderDto convert(Order order) {
         OrderDto orderDto = new OrderDto();
 
         orderDto.setId(order.getId());
@@ -17,10 +16,10 @@ public class OrderConverter implements BaseConverter<OrderDto, Order> {
         return orderDto;
     }
 
-    @Override
-    public Order convertToEntity(OrderDto orderDto) {
+    public Order convert(OrderDto orderDto) {
         Order order= new Order();
 
+        order.setId(orderDto.getId());
         order.setCreatedDate(orderDto.getCreatedDate());
         order.setTotalPrice(orderDto.getTotalPrice());
 

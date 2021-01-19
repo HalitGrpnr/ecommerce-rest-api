@@ -5,10 +5,9 @@ import com.ecommerce.api.domain.entity.User;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UserConverter implements BaseConverter<UserDto, User>{
+public class UserConverter {
 
-    @Override
-    public UserDto convertToDto(User user) {
+    public UserDto convert(User user) {
         UserDto userDto = new UserDto();
 
         userDto.setId(user.getId());
@@ -25,10 +24,10 @@ public class UserConverter implements BaseConverter<UserDto, User>{
         return userDto;
     }
 
-    @Override
-    public User convertToEntity(UserDto userDto) {
+    public User convert(UserDto userDto) {
         User user = new User();
 
+        user.setId(userDto.getId());
         user.setAddress(userDto.getAddress());
         user.setEmail(userDto.getEmail());
         user.setName(userDto.getName());

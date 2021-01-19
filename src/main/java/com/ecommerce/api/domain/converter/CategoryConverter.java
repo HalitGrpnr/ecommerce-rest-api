@@ -4,11 +4,14 @@ import com.ecommerce.api.domain.dto.CategoryDto;
 import com.ecommerce.api.domain.entity.Category;
 import org.springframework.stereotype.Service;
 
-@Service
-public class CategoryConverter implements BaseConverter<CategoryDto, Category>{
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
-    @Override
-    public CategoryDto convertToDto (Category category) {
+@Service
+public class CategoryConverter {
+
+    public CategoryDto convert(Category category) {
         CategoryDto categoryDto = new CategoryDto();
 
         categoryDto.setId(category.getId());
@@ -18,13 +21,18 @@ public class CategoryConverter implements BaseConverter<CategoryDto, Category>{
         return categoryDto;
     }
 
-    @Override
-    public Category convertToEntity (CategoryDto categoryDto) {
+    public Category convert(CategoryDto categoryDto) {
         Category category = new Category();
 
+        category.setId(categoryDto.getId());
         category.setParentId(categoryDto.getParentId());
         category.setName(categoryDto.getName());
 
         return category;
+    }
+
+
+    public List<CategoryDto> convert(List<Category> categories) {
+        return categories.stream().map(this::convert).collect(Collectors.toList());
     }
 }

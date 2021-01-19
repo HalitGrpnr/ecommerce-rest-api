@@ -5,10 +5,9 @@ import com.ecommerce.api.domain.entity.Cart;
 import org.springframework.stereotype.Service;
 
 @Service
-public class CartConverter implements BaseConverter<CartDto, Cart>{
+public class CartConverter {
 
-    @Override
-    public CartDto convertToDto (Cart cart) {
+    public CartDto convert(Cart cart) {
         CartDto cartDto = new CartDto();
 
         cartDto.setId(cart.getId());
@@ -16,9 +15,11 @@ public class CartConverter implements BaseConverter<CartDto, Cart>{
         return cartDto;
     }
 
-    @Override
-    public Cart convertToEntity (CartDto cartDto) {
+    public Cart convert(CartDto cartDto) {
         Cart cart = new Cart();
+
+        cart.setId(cartDto.getId());
+
         return cart;
     }
 }

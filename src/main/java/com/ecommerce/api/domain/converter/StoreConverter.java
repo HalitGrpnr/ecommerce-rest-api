@@ -5,9 +5,8 @@ import com.ecommerce.api.domain.entity.Store;
 import org.springframework.stereotype.Service;
 
 @Service
-public class StoreConverter implements BaseConverter<StoreDto, Store>{
-    @Override
-    public StoreDto convertToDto(Store store) {
+public class StoreConverter {
+    public StoreDto convert(Store store) {
         StoreDto storeDto = new StoreDto();
 
         storeDto.setId(store.getId());
@@ -17,10 +16,10 @@ public class StoreConverter implements BaseConverter<StoreDto, Store>{
         return storeDto;
     }
 
-    @Override
-    public Store convertToEntity(StoreDto storeDto) {
+    public Store convert(StoreDto storeDto) {
         Store store = new Store();
 
+        store.setId(storeDto.getId());
         store.setName(storeDto.getName());
         store.setAverageRate(storeDto.getAverageRate());
 
