@@ -1,6 +1,5 @@
 package com.ecommerce.api.domain.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
@@ -8,7 +7,6 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.util.Date;
-import java.util.List;
 
 import static com.ecommerce.api.domain.schema.CategorySchema.*;
 
@@ -34,7 +32,4 @@ public class Category {
     @Column(name = CREATED_DATE)
     private Date createdDate;
 
-    @ManyToMany(mappedBy = CATEGORIES)
-    @JsonIgnore
-    private List<Product> products;
 }

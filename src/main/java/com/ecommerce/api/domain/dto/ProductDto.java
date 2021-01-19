@@ -1,11 +1,9 @@
 package com.ecommerce.api.domain.dto;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 
-import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -31,11 +29,6 @@ public class ProductDto extends BaseDto {
     @JsonManagedReference("product-rating")
     private List<RatingDto> ratings;
 
-    @JsonIgnore
-    private List<CartDto> carts;
-
     private List<CategoryDto> categories;
 
-    @JsonIgnore
-    private List<OrderDto> orders;
 }

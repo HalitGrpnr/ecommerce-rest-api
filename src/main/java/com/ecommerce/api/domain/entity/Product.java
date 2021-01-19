@@ -1,7 +1,6 @@
 package com.ecommerce.api.domain.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 import org.springframework.data.annotation.CreatedDate;
@@ -80,11 +79,4 @@ public class Product {
             inverseJoinColumns = @JoinColumn(name = CATEGORY_ID))
     private List<Category> categories;
 
-    @ManyToMany(mappedBy = PRODUCTS)
-    @JsonIgnore
-    private List<Cart> carts;
-
-    @ManyToMany(mappedBy = PRODUCTS)
-    @JsonIgnore
-    private List<Order> orders;
 }
