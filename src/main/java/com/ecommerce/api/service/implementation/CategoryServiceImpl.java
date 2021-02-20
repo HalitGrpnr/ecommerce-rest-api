@@ -25,7 +25,7 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public CategoryDto get(Long id) {
-        Category category = categoryRepository.findById(id).orElse(new Category());
+        Category category = categoryRepository.findById(id).orElseThrow(EntityNotFoundException::new);
         return categoryConverter.convert(category);
     }
 

@@ -3,8 +3,9 @@ package com.ecommerce.api.domain.converter;
 import com.ecommerce.api.domain.dto.CategoryDto;
 import com.ecommerce.api.domain.entity.Category;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -12,17 +13,17 @@ import java.util.stream.Collectors;
 public class CategoryConverter {
 
     public CategoryDto convert(Category category) {
-        CategoryDto categoryDto = new CategoryDto();
-
-        categoryDto.setId(category.getId());
-        categoryDto.setParentId(category.getParentId());
-        categoryDto.setName(category.getName());
+        CategoryDto categoryDto = CategoryDto.builder()
+                .id(category.getId())
+                .parentId(category.getParentId())
+                .name(category.getName())
+                .build();
 
         return categoryDto;
     }
 
     public Category convert(CategoryDto categoryDto) {
-        Category category = new Category();
+        Category category = Category.builder().build();
 
         category.setId(categoryDto.getId());
         category.setParentId(categoryDto.getParentId());
@@ -33,6 +34,10 @@ public class CategoryConverter {
 
 
     public List<CategoryDto> convert(List<Category> categories) {
+        if (CollectionUtils.isEmpty(categories)) {
+            return Collections.emptyList();
+        }
+
         return categories.stream().map(this::convert).collect(Collectors.toList());
     }
 }
