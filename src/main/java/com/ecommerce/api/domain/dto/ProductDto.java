@@ -26,6 +26,9 @@ public class ProductDto extends BaseDto {
     @JsonManagedReference("product-comment")
     private List<CommentDto> comments;
 
+    @JsonManagedReference("product-avatars")
+    private List<AvatarDto> avatars;
+
     @JsonManagedReference("product-rating")
     private List<RatingDto> ratings;
 

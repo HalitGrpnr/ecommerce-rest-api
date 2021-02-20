@@ -11,9 +11,11 @@ import org.springframework.util.StringUtils;
 public class ProductConverter {
 
     private CategoryConverter categoryConverter;
+    private AvatarConverter avatarConverter;
 
-    public ProductConverter(CategoryConverter categoryConverter) {
+    public ProductConverter(CategoryConverter categoryConverter, AvatarConverter avatarConverter) {
         this.categoryConverter = categoryConverter;
+        this.avatarConverter = avatarConverter;
     }
 
     public ProductDto convert(Product product){
@@ -26,6 +28,7 @@ public class ProductConverter {
         productDto.setDescription(product.getDescription());
         productDto.setAverageRate(product.getAverageRate());
         productDto.setCategories(categoryConverter.convert(product.getCategories()));
+        productDto.setAvatars(avatarConverter.convert(product.getAvatars()));
 
         return productDto;
     }

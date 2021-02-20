@@ -3,6 +3,8 @@ package com.ecommerce.api.domain.entity;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
@@ -17,7 +19,8 @@ import static com.ecommerce.api.domain.schema.ProductSchema.*;
 
 @Entity
 @Table(name = PRODUCTS)
-@Data
+@Getter
+@Setter
 @EnableJpaAuditing
 public class Product {
 
@@ -53,7 +56,11 @@ public class Product {
     @Column(name = AVERAGE_RATE)
     private double averageRate;
 
-    //TODO private List<Object> avatars;
+    @OneToMany(cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY,
+            mappedBy = PRODUCT)
+    @JsonManagedReference("product-avatars")
+    private List<Avatar> avatars;
 
     @OneToMany(cascade = CascadeType.ALL,
             fetch = FetchType.LAZY,

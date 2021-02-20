@@ -2,15 +2,18 @@ package com.ecommerce.api.service.implementation;
 
 import com.ecommerce.api.domain.converter.ProductConverter;
 import com.ecommerce.api.domain.dto.ProductDto;
+import com.ecommerce.api.domain.entity.Avatar;
 import com.ecommerce.api.domain.entity.Category;
 import com.ecommerce.api.domain.entity.Product;
 import com.ecommerce.api.domain.request.ProductAddRequest;
 import com.ecommerce.api.domain.request.ProductUpdateRequest;
 import com.ecommerce.api.repository.ProductRepository;
+import com.ecommerce.api.service.AvatarService;
 import com.ecommerce.api.service.CategoryService;
 import com.ecommerce.api.service.ProductService;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
@@ -22,13 +25,15 @@ public class ProductServiceImpl implements ProductService {
     private final ProductRepository productRepository;
     private final ProductConverter productConverter;
     private final CategoryService categoryService;
+    private final AvatarService avatarService;
 
     public ProductServiceImpl(ProductRepository productRepository,
                               ProductConverter productConverter,
-                              CategoryService categoryService) {
+                              CategoryService categoryService, AvatarService avatarService) {
         this.productRepository = productRepository;
         this.productConverter = productConverter;
         this.categoryService = categoryService;
+        this.avatarService = avatarService;
     }
 
 
@@ -42,11 +47,20 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public ProductDto add(ProductAddRequest request) {
-        List<Category> categories = categoryService.findByIds(request.getCategories());
-
+    public ProductDto add(ProductAddRequest request, List<MultipartFile> images) {
         Product product = productConverter.convert(request);
+
+        //TODO add validators
+        List<Category> categories = categoryService.findByIds(request.getCategories());
         product.setCategories(categories);
+
+        if (!CollectionUtils.isEmpty(images)) {
+            List<Avatar> avatars = avatarService.save(images);
+
+            avatars.forEach(avatar -> avatar.setProduct(product));
+
+            product.setAvatars(avatars);
+        }
 
         return productConverter.convert(productRepository.save(product));
     }
