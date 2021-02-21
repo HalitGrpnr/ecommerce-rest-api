@@ -4,6 +4,7 @@ import com.ecommerce.api.domain.converter.CategoryConverter;
 import com.ecommerce.api.domain.dto.CategoryDto;
 import com.ecommerce.api.domain.entity.Category;
 import com.ecommerce.api.repository.CategoryRepository;
+import jdk.nashorn.internal.ir.annotations.Ignore;
 import org.assertj.core.util.Arrays;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -23,6 +24,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
+@Ignore
 class CategoryServiceImplTest {
 
     private CategoryRepository categoryRepository;

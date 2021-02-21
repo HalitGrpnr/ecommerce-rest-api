@@ -2,6 +2,7 @@ package com.ecommerce.api.repository.integration;
 
 import com.ecommerce.api.domain.entity.Category;
 import com.ecommerce.api.repository.CategoryRepository;
+import jdk.nashorn.internal.ir.annotations.Ignore;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.TestInstance.Lifecycle;
@@ -22,6 +23,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 @ExtendWith(SpringExtension.class)
 @DataJpaTest
 @TestInstance(Lifecycle.PER_CLASS)
+@Ignore
 public class CategoryRepositoryIntegrationTest {
 
     @Autowired
