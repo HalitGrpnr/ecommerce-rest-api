@@ -1,9 +1,6 @@
 package com.ecommerce.api.domain.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
@@ -15,7 +12,8 @@ import static com.ecommerce.api.domain.schema.CategorySchema.*;
 
 @Entity
 @Table(name = CATEGORIES)
-@Data
+@Getter
+@Setter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
