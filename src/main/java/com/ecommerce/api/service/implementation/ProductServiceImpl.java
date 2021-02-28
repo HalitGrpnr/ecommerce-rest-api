@@ -42,6 +42,12 @@ public class ProductServiceImpl implements ProductService {
         return productConverter.convert(findById(id));
     }
 
+    @Override
+    public List<ProductDto> getByCategoryId(Long categoryId) {
+        List<Product> products = productRepository.findByCategories_Id(categoryId);
+        return products.stream().map(productConverter::convert).collect(Collectors.toList());
+    }
+
     private Product findById(Long id) {
         return productRepository.findById(id).orElseThrow(EntityNotFoundException::new);
     }

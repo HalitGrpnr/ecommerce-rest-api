@@ -39,6 +39,15 @@ public class ProductController {
         }
     }
 
+    @GetMapping("/category/{id}")
+    public ResponseEntity<List<ProductDto>> getByCategoryId(@PathVariable("id") Long categoryId){
+        try {
+            return ResponseEntity.ok(productService.getByCategoryId(categoryId));
+        } catch (EntityNotFoundException e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
     @PostMapping
     public ResponseEntity<ProductDto> addWithImages(@RequestPart ProductAddRequest request,
                                                     @RequestPart List<MultipartFile> images){

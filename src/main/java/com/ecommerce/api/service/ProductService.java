@@ -9,6 +9,7 @@ import java.util.List;
 
 public interface ProductService {
     ProductDto get(Long id);
+    List<ProductDto> getByCategoryId(Long categoryId);
     ProductDto add(ProductAddRequest request, List<MultipartFile> images);
     ProductDto update(ProductUpdateRequest request);
     void delete(Long id);
