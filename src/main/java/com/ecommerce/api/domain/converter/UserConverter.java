@@ -2,6 +2,7 @@ package com.ecommerce.api.domain.converter;
 
 import com.ecommerce.api.domain.dto.UserDto;
 import com.ecommerce.api.domain.entity.User;
+import com.ecommerce.api.domain.request.UserAddRequest;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -37,6 +38,18 @@ public class UserConverter {
         user.setPassword(userDto.getPassword());
         user.setSurname(userDto.getSurname());
         user.setUserRole(userDto.getUserRole());
+
+        return user;
+    }
+
+    public User convert(UserAddRequest request) {
+        User user = new User();
+
+        user.setName(request.getName());
+        user.setSurname(request.getSurname());
+        user.setAddress(request.getAddress());
+        user.setEmail(request.getEmail());
+        user.setPhone(request.getPhone());
 
         return user;
     }

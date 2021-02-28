@@ -2,8 +2,11 @@ package com.ecommerce.api.service.implementation;
 
 import com.ecommerce.api.domain.converter.UserConverter;
 import com.ecommerce.api.domain.dto.UserDto;
+import com.ecommerce.api.domain.entity.Cart;
 import com.ecommerce.api.domain.entity.User;
+import com.ecommerce.api.domain.request.UserAddRequest;
 import com.ecommerce.api.repository.UserRepository;
+import com.ecommerce.api.service.CartService;
 import com.ecommerce.api.service.UserService;
 import org.springframework.stereotype.Service;
 
@@ -15,10 +18,12 @@ public class UserServiceImpl implements UserService {
     
     private UserRepository userRepository;
     private UserConverter userConverter;
+    private CartService cartService;
 
-    public UserServiceImpl(UserRepository userRepository, UserConverter userConverter) {
+    public UserServiceImpl(UserRepository userRepository, UserConverter userConverter, CartService cartService) {
         this.userRepository = userRepository;
         this.userConverter = userConverter;
+        this.cartService = cartService;
     }
 
     @Override
@@ -29,8 +34,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDto add(UserDto userDto) {
-        User user = userConverter.convert(userDto);
+    public UserDto add(UserAddRequest request) {
+        User user = userConverter.convert(request);
+
+        Cart cart = new Cart();
+        cart.setUser(user);
+        user.setCart(cart);
         user = userRepository.save(user);
 
         return userConverter.convert(user);

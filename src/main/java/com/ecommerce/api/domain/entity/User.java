@@ -29,7 +29,7 @@ public class User {
     @NotEmpty
     @Column(name = SURNAME)
     private String surname;
-    @NotEmpty
+
     @Column(name = PASSWORD)
     private String password;
     @NotEmpty
