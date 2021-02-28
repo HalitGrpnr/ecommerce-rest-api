@@ -1,8 +1,8 @@
 package com.ecommerce.api.controller;
 
 import com.ecommerce.api.domain.dto.CartDto;
+import com.ecommerce.api.domain.request.CartAddProductRequest;
 import com.ecommerce.api.service.CartService;
-import org.springframework.boot.context.config.ConfigDataResourceNotFoundException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -45,8 +45,8 @@ public class CartController {
     }
 
     @PutMapping
-    public ResponseEntity<CartDto> update(@RequestBody CartDto cartDto){
-        return ResponseEntity.ok(cartService.update(cartDto));
+    public ResponseEntity<CartDto> update(@RequestBody CartAddProductRequest request){
+        return ResponseEntity.ok(cartService.update(request));
     }
 
     @DeleteMapping("/{id}")

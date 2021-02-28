@@ -1,7 +1,8 @@
 package com.ecommerce.api.domain.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.List;
@@ -10,7 +11,8 @@ import static com.ecommerce.api.domain.schema.CartSchema.*;
 
 @Entity
 @Table(name = CARTS)
-@Data
+@Getter
+@Setter
 public class Cart {
 
     @Id

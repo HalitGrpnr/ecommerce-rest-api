@@ -7,10 +7,17 @@ import org.springframework.stereotype.Service;
 @Service
 public class CartConverter {
 
+    private ProductConverter productConverter;
+
+    public CartConverter(ProductConverter productConverter) {
+        this.productConverter = productConverter;
+    }
+
     public CartDto convert(Cart cart) {
         CartDto cartDto = new CartDto();
 
         cartDto.setId(cart.getId());
+        cartDto.setProducts(productConverter.convert(cart.getProducts()));
 
         return cartDto;
     }

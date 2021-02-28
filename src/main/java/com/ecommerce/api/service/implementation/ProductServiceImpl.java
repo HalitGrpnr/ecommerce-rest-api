@@ -17,7 +17,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class ProductServiceImpl implements ProductService {
@@ -43,9 +42,14 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    public List<Product> getByIds(List<Long> ids) {
+        return productRepository.findAllById(ids);
+    }
+
+    @Override
     public List<ProductDto> getByCategoryId(Long categoryId) {
         List<Product> products = productRepository.findByCategories_Id(categoryId);
-        return products.stream().map(productConverter::convert).collect(Collectors.toList());
+        return productConverter.convert(products);
     }
 
     private Product findById(Long id) {
@@ -96,6 +100,6 @@ public class ProductServiceImpl implements ProductService {
             throw new EntityNotFoundException();
         }
 
-        return products.stream().map(productConverter::convert).collect(Collectors.toList());
+        return productConverter.convert(products);
     }
 }

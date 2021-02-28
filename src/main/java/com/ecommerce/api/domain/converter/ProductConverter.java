@@ -5,7 +5,12 @@ import com.ecommerce.api.domain.entity.Product;
 import com.ecommerce.api.domain.request.ProductAddRequest;
 import com.ecommerce.api.domain.request.ProductUpdateRequest;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
+
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ProductConverter {
@@ -76,5 +81,13 @@ public class ProductConverter {
             product.setLeadTime(request.getLeadTime());
 
         }
+    }
+
+    public List<ProductDto> convert(List<Product> products) {
+        if (CollectionUtils.isEmpty(products)) {
+            return Collections.emptyList();
+        }
+
+        return products.stream().map(this::convert).collect(Collectors.toList());
     }
 }
