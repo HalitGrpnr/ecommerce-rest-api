@@ -16,4 +16,5 @@ public interface ProductService {
     ProductDto update(ProductUpdateRequest request);
     void delete(Long id);
     List<ProductDto> getAll();
+    List<ProductDto> getHomePageData();
 }

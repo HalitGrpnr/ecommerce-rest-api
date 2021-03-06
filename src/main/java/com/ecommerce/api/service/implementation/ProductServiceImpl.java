@@ -11,6 +11,9 @@ import com.ecommerce.api.repository.ProductRepository;
 import com.ecommerce.api.service.AvatarService;
 import com.ecommerce.api.service.CategoryService;
 import com.ecommerce.api.service.ProductService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.multipart.MultipartFile;
@@ -101,5 +104,17 @@ public class ProductServiceImpl implements ProductService {
         }
 
         return productConverter.convert(products);
+    }
+
+    @Override
+    public List<ProductDto> getHomePageData() {
+        Pageable pageable = PageRequest.of(0, 10);
+        Page<Product> response = productRepository.findAll(pageable);
+
+        if (CollectionUtils.isEmpty(response.getContent())) {
+            throw new EntityNotFoundException();
+        }
+
+        return productConverter.convert(response.getContent());
     }
 }
