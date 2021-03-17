@@ -19,6 +19,7 @@ public class ProductDto extends BaseDto {
     private Date LastModifiedDate;
     private int leadTime;
     private double averageRate;
+    private boolean liked;
 
     @JsonBackReference("store-product")
     private StoreDto storeDto;

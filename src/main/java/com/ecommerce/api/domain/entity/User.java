@@ -73,6 +73,11 @@ public class User {
     @JsonManagedReference("user-comment")
     private List<Comment> comments;
 
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = FAVORITE_ID, referencedColumnName = ID)
+    @JsonManagedReference("user-favorite")
+    private Favorite favorite;
+
     @OneToMany(cascade = CascadeType.ALL,
             fetch = FetchType.LAZY,
             mappedBy = USER)

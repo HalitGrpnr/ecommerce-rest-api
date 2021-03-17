@@ -16,4 +16,5 @@ public class UserSchema {
     public static final String ENABLED = "enabled";
     public static final String CART_ID = "cart_id";
     public static final String STORE_ID = "store_id";
+    public static final String FAVORITE_ID = "favorite_id";
 }
