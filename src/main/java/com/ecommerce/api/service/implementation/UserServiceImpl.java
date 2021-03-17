@@ -10,6 +10,7 @@ import com.ecommerce.api.service.CartService;
 import com.ecommerce.api.service.UserService;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -31,6 +32,11 @@ public class UserServiceImpl implements UserService {
         User user = userRepository.findById(id).orElse(new User());
         UserDto userDto = userConverter.convert(user);
         return userDto;
+    }
+
+    @Override
+    public User find(Long id) {
+        return userRepository.findById(id).orElseThrow(EntityNotFoundException::new);
     }
 
     @Override
