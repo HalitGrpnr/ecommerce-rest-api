@@ -6,7 +6,6 @@ import com.ecommerce.api.domain.entity.Cart;
 import com.ecommerce.api.domain.entity.User;
 import com.ecommerce.api.domain.request.UserAddRequest;
 import com.ecommerce.api.repository.UserRepository;
-import com.ecommerce.api.service.CartService;
 import com.ecommerce.api.service.UserService;
 import org.springframework.stereotype.Service;
 
@@ -19,12 +18,10 @@ public class UserServiceImpl implements UserService {
     
     private UserRepository userRepository;
     private UserConverter userConverter;
-    private CartService cartService;
 
-    public UserServiceImpl(UserRepository userRepository, UserConverter userConverter, CartService cartService) {
+    public UserServiceImpl(UserRepository userRepository, UserConverter userConverter) {
         this.userRepository = userRepository;
         this.userConverter = userConverter;
-        this.cartService = cartService;
     }
 
     @Override

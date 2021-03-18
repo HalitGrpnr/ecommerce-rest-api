@@ -11,7 +11,7 @@ public class CartAddProductRequest extends BaseRequest {
     private static final long serialVersionUID = 3506324541957613714L;
 
     @NotNull
-    private Long cartId;
+    private Long userId;
 
     @NotEmpty
     private List<Long> productIds;

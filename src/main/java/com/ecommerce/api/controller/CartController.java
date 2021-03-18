@@ -39,9 +39,18 @@ public class CartController {
         }
     }
 
+    @GetMapping("/user/{userId}")
+    public ResponseEntity<CartDto> getByUserId(@PathVariable("userId") Long userId){
+        try {
+            return ResponseEntity.ok(cartService.getByUserId(userId));
+        } catch (EntityNotFoundException e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
     @PostMapping
-    public ResponseEntity<CartDto> add(@RequestBody CartDto cartDto){
-        return ResponseEntity.ok(cartService.add(cartDto));
+    public ResponseEntity<CartDto> add(@RequestBody CartAddProductRequest request){
+        return ResponseEntity.ok(cartService.add(request));
     }
 
     @PutMapping
