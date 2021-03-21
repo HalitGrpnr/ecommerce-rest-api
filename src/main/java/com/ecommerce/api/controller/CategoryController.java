@@ -1,6 +1,5 @@
 package com.ecommerce.api.controller;
 
-import com.ecommerce.api.domain.dto.CartDto;
 import com.ecommerce.api.domain.dto.CategoryDto;
 import com.ecommerce.api.service.CategoryService;
 import org.springframework.http.ResponseEntity;
@@ -49,8 +48,9 @@ public class CategoryController {
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable Long id){
+    public ResponseEntity<Void> delete(@PathVariable Long id){
         categoryService.delete(id);
+        return ResponseEntity.ok().build();
     }
 
 }
