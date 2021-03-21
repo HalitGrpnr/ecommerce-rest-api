@@ -3,6 +3,7 @@ package com.ecommerce.api.service.implementation;
 import com.ecommerce.api.domain.converter.UserConverter;
 import com.ecommerce.api.domain.dto.UserDto;
 import com.ecommerce.api.domain.entity.Cart;
+import com.ecommerce.api.domain.entity.Favorite;
 import com.ecommerce.api.domain.entity.User;
 import com.ecommerce.api.domain.request.UserAddRequest;
 import com.ecommerce.api.repository.UserRepository;
@@ -39,13 +40,23 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserDto add(UserAddRequest request) {
         User user = userConverter.convert(request);
-
-        Cart cart = new Cart();
-        cart.setUser(user);
-        user.setCart(cart);
+        addCart(user);
+        addFavorite(user);
         user = userRepository.save(user);
 
         return userConverter.convert(user);
+    }
+
+    private void addFavorite(User user) {
+        Favorite favorite = new Favorite();
+        favorite.setUser(user);
+        user.setFavorite(favorite);
+    }
+
+    private void addCart(User user) {
+        Cart cart = new Cart();
+        cart.setUser(user);
+        user.setCart(cart);
     }
 
     @Override
@@ -61,7 +72,6 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<UserDto> getAll() {
         List<User> users = userRepository.findAll();
-        List<UserDto> userDtos = users.stream().map(c -> userConverter.convert(c)).collect(Collectors.toList());
-        return userDtos;
+        return users.stream().map(c -> userConverter.convert(c)).collect(Collectors.toList());
     }
 }
