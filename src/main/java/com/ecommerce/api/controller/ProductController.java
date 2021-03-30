@@ -4,6 +4,7 @@ import com.ecommerce.api.domain.dto.ProductDto;
 import com.ecommerce.api.domain.request.ProductAddRequest;
 import com.ecommerce.api.domain.request.ProductUpdateRequest;
 import com.ecommerce.api.service.ProductService;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -48,7 +49,7 @@ public class ProductController {
         }
     }
 
-    @PostMapping
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<ProductDto> addWithImages(@RequestPart ProductAddRequest request,
                                                     @RequestPart List<MultipartFile> images){
         return ResponseEntity.ok(productService.add(request, images));
