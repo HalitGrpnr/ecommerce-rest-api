@@ -8,7 +8,6 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
@@ -50,9 +49,8 @@ public class ProductController {
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<ProductDto> addWithImages(@RequestPart ProductAddRequest request,
-                                                    @RequestPart List<MultipartFile> images){
-        return ResponseEntity.ok(productService.add(request, images));
+    public ResponseEntity<ProductDto> addWithImages(@ModelAttribute ProductAddRequest request){
+        return ResponseEntity.ok(productService.add(request));
     }
 
     @PutMapping

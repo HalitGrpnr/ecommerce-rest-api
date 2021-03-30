@@ -16,7 +16,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
-import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
@@ -60,15 +59,15 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public ProductDto add(ProductAddRequest request, List<MultipartFile> images) {
+    public ProductDto add(ProductAddRequest request) {
         Product product = productConverter.convert(request);
 
         //TODO add validators
         List<Category> categories = categoryService.findByIds(request.getCategories());
         product.setCategories(categories);
 
-        if (!CollectionUtils.isEmpty(images)) {
-            List<Avatar> avatars = avatarService.save(images);
+        if (!CollectionUtils.isEmpty(request.getImages())) {
+            List<Avatar> avatars = avatarService.save(request.getImages());
 
             avatars.forEach(avatar -> avatar.setProduct(product));
 

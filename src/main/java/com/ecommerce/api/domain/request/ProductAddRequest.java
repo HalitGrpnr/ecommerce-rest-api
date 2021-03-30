@@ -1,6 +1,7 @@
 package com.ecommerce.api.domain.request;
 
 import lombok.Data;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -24,4 +25,6 @@ public class ProductAddRequest extends BaseRequest{
 
     @NotEmpty
     private List<Long> categories;
+
+    private List<MultipartFile> images;
 }

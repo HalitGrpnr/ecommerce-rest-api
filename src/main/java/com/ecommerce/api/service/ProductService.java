@@ -4,7 +4,6 @@ import com.ecommerce.api.domain.dto.ProductDto;
 import com.ecommerce.api.domain.entity.Product;
 import com.ecommerce.api.domain.request.ProductAddRequest;
 import com.ecommerce.api.domain.request.ProductUpdateRequest;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -12,7 +11,7 @@ public interface ProductService {
     ProductDto get(Long id);
     List<Product> getByIds(List<Long> ids);
     List<ProductDto> getByCategoryId(Long categoryId);
-    ProductDto add(ProductAddRequest request, List<MultipartFile> images);
+    ProductDto add(ProductAddRequest request);
     ProductDto update(ProductUpdateRequest request);
     void delete(Long id);
     List<ProductDto> getAll();
