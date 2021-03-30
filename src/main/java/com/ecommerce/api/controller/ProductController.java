@@ -48,7 +48,7 @@ public class ProductController {
         }
     }
 
-    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<ProductDto> addWithImages(@ModelAttribute ProductAddRequest request){
         return ResponseEntity.ok(productService.add(request));
     }
