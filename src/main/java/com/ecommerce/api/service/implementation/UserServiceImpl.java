@@ -8,6 +8,8 @@ import com.ecommerce.api.domain.entity.User;
 import com.ecommerce.api.domain.request.UserAddRequest;
 import com.ecommerce.api.repository.UserRepository;
 import com.ecommerce.api.service.UserService;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
@@ -73,5 +75,10 @@ public class UserServiceImpl implements UserService {
     public List<UserDto> getAll() {
         List<User> users = userRepository.findAll();
         return users.stream().map(c -> userConverter.convert(c)).collect(Collectors.toList());
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        return userRepository.findByEmail(email).orElseThrow(EntityNotFoundException::new);
     }
 }
